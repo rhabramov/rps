@@ -7,116 +7,34 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is the Rock Paper Scissors home page.</h1>
+    <h1>This is the Rock Paper Scissors page.</h1>
 
-    <script>
-        console.log("Hello world!");
+    <div id="score-container">
+        <table style="width:20%">
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>Player score</td>
+              <td id="player_score">0</td>
+            </tr>
+            <tr>
+              <td>Computer score</td>
+              <td id="computer_score">0</td>
+            </tr>
+          </table> 
 
-        // Function will randomly return "Rock", "Paper", or "Scissors"
-        function computerPlay() {
-            let random_int = Math.floor(Math.random() * 3);
-            let result;
+    </div>
 
-            switch (random_int) {
-                case 0: result = "Rock";
-                break;
-            
-                case 1: result = "Paper";
-                break;
-            
-                case 2: result = "Scissors";
-                break;
-            }
-            return result;
-        }
-
-        // Function to play a round of RPS
-        function playRound(playerSelection, computerSelection) {
-            let player_lowercase = playerSelection.toLowerCase();
-            let computer_lowercase = computerSelection.toLowerCase();
-
-            let player_value;
-            let computer_value;
-
-            // Encode the value of the player throw
-            switch (player_lowercase) {
-                case "rock": player_value = 0;
-                break;
-            
-                case "paper": player_value = 1;
-                break;
-            
-                case "scissors": player_value = 2;
-                break;
-            }
-
-            // Encode the value of the computer throw
-            switch (computer_lowercase) {
-                case "rock": computer_value = 0;
-                break;
-            
-                case "paper": computer_value = 1;
-                break;
-            
-                case "scissors": computer_value = 2;
-                break;
-            }
-
-            let game_result = player_value - computer_value;
-            let text_result;
-            let verb_result;
-
-            switch (game_result) {
-                case 0: text_result = "tie"; verb_result = "ties";
-                break;
-            
-                case -1: text_result = "lose"; verb_result = "loses to";
-                break;
-            
-                case -2: text_result = "win"; verb_result = "beats";
-                break;
-
-                case 1: text_result = "win"; verb_result = "beats";
-                break;
-
-                case 2: text_result = "lose"; verb_result = "loses to";
-                break;
-            }
-
-            final_text_to_print = "You " + text_result + "! " + playerSelection + " " + verb_result + " " + computerSelection;
-
-            return final_text_to_print;
-        }
-
-        // Function to simulate a game
-        function game() {
-            let player_score = 0;
-            let computer_score = 0;
-
-            let player_selection;
-            let computer_selection;
-            let game_result;
-
-            for(let i = 0; i < 5; i++){
-                player_selection = prompt("Enter your throw.");
-                computer_selection = computerPlay();
-                game_result = playRound(player_selection, computer_selection);
-                console.log(game_result);
-
-                if(game_result.search("win") > 0) {
-                    player_score++;
-                }
-                if(game_result.search("loses") > 0) {
-                    computer_score++;
-                }
-            }
-
-            let overall_score = "Final score: you " + player_score + ", computer: " + computer_score;
-            console.log(overall_score);
-        }
-        
-        game();
-
-    </script>
+    <div id="button-container">
+        <h2>To throw a hand, click the button below.</h2>
+        <h3 id="outcome"></h3>
+        <button id="rock" onclick="thrown_simulation('Rock')">Rock</button>
+        <button id="paper" onclick="thrown_simulation('Paper')">Paper</button>
+        <button id="Scissors" onclick="thrown_simulation('Scissors')">Scissors</button>
+    </div>
+    <!-- Add the script to the page -->
+    <script src="rps.js"></script>
 </body>
 </html>
